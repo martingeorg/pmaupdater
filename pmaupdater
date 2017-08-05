@@ -8,5 +8,5 @@ mv `ls -d phpMyAdmin*/`/* ./
 cp ./config.sample.inc.php ./config.inc.php
 PMABLOWFISH=`head -c 512 /dev/urandom | md5sum | awk '{print $1}'`
 sed -i -- 's/\['\''blowfish_secret'\''\] = '\'''\''/\['\''blowfish_secret'\''\] = '\'''$PMABLOWFISH''\''/' ./config.inc.php
-rm -rf phpMyAdmin-*.tar.gz
+rm -rf phpMyAdmin-*
 PMABLOWFISH=
