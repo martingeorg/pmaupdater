@@ -10,7 +10,7 @@ This Bash script will do the following.
 * Extract the downloaded `.tar.gz` file in the current folder.
 * Copy `config.sample.inc.php` to `config.inc.php`.
 * Automatically update the `'blowfish_secret'` in `config.inc.php` using an `md5sum` of 512 bytes received from `/dev/urandom`.
-* Clean up by removing the downloade `.tar.gz` file
+* Clean up by removing the downloaded `.tar.gz` file
 
 To use it, simply drop the following commands in your terminal.
 
@@ -20,4 +20,4 @@ or
 
 `wget https://github.com/martingeorg/pmaupdater/archive/master.zip -O pmaupdater.zip && unzip -j ./pmaupdater.zip pmaupdater-master/* -d pmaupdater && (cd pmaupdater && ./pmaupdater)`
 
-###### Make sure you don't already have a file or folder with the name `pmaupdater.zip` or `pmaupdater` as it will be overwritten!
+###### Make sure you don't have already a file or folder with the name `pmaupdater.zip` or `pmaupdater` as it will be overwritten!
