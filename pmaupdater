@@ -1,2 +1,5 @@
 #!/bin/bash
-rm -rf ./pmalatest ./phpMyAdmin* && wget -q -O - https://www.phpmyadmin.net/downloads | grep -m 1 -o '"https.*english.tar.gz"' | sed 's/"//g' | wget -q -i - && sleep 1 && tar zxf `ls ./phpMyAdmin*.tar.gz` && mv `ls -d phpMyAdmin*/` ./pmalatest && mv ./pmalatest/config.sample.inc.php ./pmalatest/config.inc.php && PMABLOWFISH=`head -c 512 /dev/urandom | md5sum | awk '{print $1}'` && sed -i -- 's/\['\''blowfish_secret'\''\] = '\'''\''/\['\''blowfish_secret'\''\] = '\'''$PMABLOWFISH''\''/' ./pmalatest/config.inc.php && rm -f phpMyAdmin-* && PMABLOWFISH=
+
+rm -rf `ls | grep -Evw 'pmaupdater|LICENSE-pmaupdater|README.md|.git|.gitignore'`
+
+wget -q -O - https://www.phpmyadmin.net/downloads | grep -m 1 -o '"https.*english.tar.gz"' | sed 's/"//g' | wget -q -i - && sleep 1 && tar zxf `ls ./phpMyAdmin*.tar.gz` && mv `ls -d phpMyAdmin*/`/* ./ && cp ./config.sample.inc.php ./config.inc.php && PMABLOWFISH=`head -c 512 /dev/urandom | md5sum | awk '{print $1}'` && sed -i -- 's/\['\''blowfish_secret'\''\] = '\'''\''/\['\''blowfish_secret'\''\] = '\'''$PMABLOWFISH''\''/' ./config.inc.php && rm -rf phpMyAdmin-* && PMABLOWFISH=
