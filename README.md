@@ -7,10 +7,10 @@ Script for automatically installing/updating the latest phpMyAdmin version.
 
 * Remove any old phpMyAdmin files (in the current folder) if there are any.
 * Download the latest version of phpMyAdmin from phpMyAdmin site.
-* Extract the downloaded `.tar.gz` file in the current folder.
+* Extract the downloaded `.zip` file in the current folder.
 * Copy `config.sample.inc.php` to `config.inc.php`.
 * Automatically update the `'blowfish_secret'` in `config.inc.php` using an `md5sum` of 512 bytes received from `/dev/urandom`.
-* Clean up by removing the downloaded `.tar.gz` file
+* Clean up by removing the downloaded `.zip` file
 
 ### Installing
 To use it, simply drop the following commands in your terminal.
