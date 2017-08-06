@@ -2,18 +2,25 @@
 
 echo "Remove old files";
 rm -rf `ls | grep -Evw 'pmaupdater|LICENSE-pmaupdater|README.md|.git|.gitignore'`
-PMALINK=`wget -q -O - https://www.phpmyadmin.net/downloads | grep -m 1 -o '"https.*english.tar.gz"' | sed 's/"//g'`
+
 echo "Download new version from phpMyAdmin site" $PMALINK;
+PMALINK=`wget -q -O - https://www.phpmyadmin.net/home_page/version.php | tail -n 1`
+PMAVERSION=`wget -q -O - https://www.phpmyadmin.net/home_page/version.php | head -n 1`
 wget -q $PMALINK
-sleep 1
+
 echo "Extract files";
-tar zxf `ls ./phpMyAdmin*.tar.gz`
-mv `ls -d phpMyAdmin*/`/* ./
+sleep 1
+unzip -q ./phpMyAdmin-$PMAVERSION-all-languages.zip -d .
+mv ./phpMyAdmin-$PMAVERSION-all-languages/* .
+
 echo "Setup config file and blowfish_secret";
 cp ./config.sample.inc.php ./config.inc.php
 PMABLOWFISH=`head -c 512 /dev/urandom | md5sum | awk '{print $1}'`
 sed -i -- 's/\['\''blowfish_secret'\''\] = '\'''\''/\['\''blowfish_secret'\''\] = '\'''$PMABLOWFISH''\''/' ./config.inc.php
+
 echo "Clean up"
 rm -rf phpMyAdmin-*
 PMABLOWFISH=
+PMAVERSION=
+
 echo "Done"
